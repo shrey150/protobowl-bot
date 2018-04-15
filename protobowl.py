@@ -12,9 +12,15 @@ browser = webdriver.Chrome("chromedriver.exe")
 
 print_msgs = False
 
-def get_question(room):
+def get_question(room, username):
 
 	browser.get("http://www.protobowl.com/" + room)
+
+	time.sleep(0.1)
+
+	username_input = browser.find_element_by_xpath('//*[@id="username"]')
+	username_input.send_keys(Keys.CONTROL + "a")
+	username_input.send_keys(username)
 
 	global question_id
 	question_id = browser.find_element_by_xpath('//*[@id="history"]/div[1]').get_attribute("class")
@@ -112,6 +118,7 @@ def main():
 	print("")
 
 	room = input("Choose a Protobowl room:	")
+	username = input("Choose a username:	")
 	debug_prompt = input("Print debugging messages? (Y/N)	")
 
 	if debug_prompt.upper() == "Y":
@@ -123,7 +130,7 @@ def main():
 		main()
 
 
-	get_question(room)
+	get_question(room, username)
 
 def debug(string):
 	if print_msgs:
