@@ -54,7 +54,7 @@ def get_question(room, username):
 
 def search(question):
 
-	args = {
+	ms_args = {
 
 		"search[query]"						: question,
 		"search[filters][search_type][]"	: "Question",
@@ -65,7 +65,26 @@ def search(question):
 
 	}
 
-	r = requests.get("https://www.quizdb.org/api/search", params=args)
+	hs_args = {
+
+		"search[query]"						: question,
+		"search[filters][search_type][]"	: "Question",
+		"search[filters][difficulty][]"		: "easy_high_school",
+		"search[filters][difficulty][]"		: "regular_high_school",
+		"search[filters][difficulty][]"		: "hard_high_school",
+		"search[filters][difficulty][]"		: "national_high_school",
+		"search[filters][question_type][]"	: "Tossup",
+		"search[limit]"						: "false",
+		"download"							: "json"
+
+	}
+
+	if difficulty == 0:
+		r = requests.get("https://www.quizdb.org/api/search", params=ms_args)
+	elif difficulty == 1:
+		r = requests.get("https://www.quizdb.org/api/search", params=hs_args)
+	else:
+		print("EXCEPTION")
 
 	data = r.json()
 
@@ -101,6 +120,10 @@ def search(question):
 			textbox.send_keys(formatted_answer)
 			textbox.send_keys(Keys.ENTER)
 
+			time.sleep(0.1)
+
+			browser.find_element_by_xpath("/html/body/div[3]/div/div[1]/div[1]/div/div/div/button[3]").click()
+
 			debug("Buzzed in!")
 
 		except ElementNotVisibleException as e:
@@ -111,6 +134,8 @@ def search(question):
 def main():
 
 	global print_msgs
+	global difficulty
+
 	cls()
 
 	print("PROTOBOWL BOT")
@@ -119,12 +144,21 @@ def main():
 
 	room = input("Choose a Protobowl room:	")
 	username = input("Choose a username:	")
+	difficulty = input("Difficulty? (HS/MS)	")
 	debug_prompt = input("Print debugging messages? (Y/N)	")
 
 	if debug_prompt.upper() == "Y":
 		print_msgs = True
 	elif debug_prompt.upper() == "N":
 		print_msgs = False
+	else:
+		print("Invalid input, try again")
+		main()
+
+	if difficulty.upper() == "HS":
+		difficulty = 1
+	elif difficulty.upper() == "MS":
+		difficulty = 0
 	else:
 		print("Invalid input, try again")
 		main()
