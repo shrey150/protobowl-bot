@@ -49,8 +49,11 @@ function guess() {
 			return;
 
 		}
-
+		
 		let question = words.text();
+
+		// replace curly quotes bc QuizDB doesn't use them
+		question = question.replace('“','"').replace('”','"').replace('‘',"'").replace('’',"'");
 
 		// config settings for the QuizDB API
 		// TODO: allow customization here
