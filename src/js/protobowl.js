@@ -82,15 +82,18 @@ function guess() {
 				// replaces in this order: brackets, quotes, parentheses
 				let answer = response.data.tossups[0].answer.replace(/ *\[[^\]]*]/, "").replace(/"(.*?(\s)*?)*?"/, "").replace(/ *\[[^)]*\ */g, "");
 
-				// TODO: buzzing in still doesn't work correctly
+				// buzz in
 				$(".buzzbtn").click();
 				$(".guess_input").val(answer);
-				$(".guess_input").trigger( jQuery.Event("keydown", { which: 13, keyCode: 13 }));
-				$(".guess-form").submit();
+				$(".guess_form").submit();
+
+				// press "next" with a small delay so it'll work
+				let e = $.Event("keydown", {keyCode: 78, which: 78});
+				setTimeout(() => { $("body").trigger(e) }, 50);
 
 				resolve(true);
 
-				console.log("------------------");
+				console.log("--------------------");
 
 			} else {
 				console.log("Bot> Not sure yet...");
@@ -100,7 +103,7 @@ function guess() {
 		})
 
 	});
-
+	
 }
 
 function stopBot() {

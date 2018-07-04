@@ -1,0 +1,24 @@
+{
+  "name": "protobowl-bot",
+  "version": "1.0.0",
+  "description": "a bot for Protobowl",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-minify": "^0.4.3",
+    "cpx": "^1.5.0"
+  },
+  "scripts": {
+    "build": "babel src/js --out-file dist/js/protobowl.min.js && cpx src/python/* dist/python"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shrey150/protobowl-bot.git"
+  },
+  "author": "Shrey Pandya",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shrey150/protobowl-bot/issues"
+  },
+  "homepage": "https://github.com/shrey150/protobowl-bot#readme"
+}
