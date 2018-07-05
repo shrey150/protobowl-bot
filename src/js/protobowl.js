@@ -1,6 +1,6 @@
 console.log("Bot> Hello");
 console.log("Bot> I'm listening for questions to start now");
-console.log("Bot> If you want me to stop, type in 'botStop()'");
+console.log("Bot> If you want me to stop, type in 'stopBot()'");
 
 const node = document.getElementById("history");
 
