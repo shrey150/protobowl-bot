@@ -15,7 +15,8 @@ let observer = new MutationObserver((mutationsList) => {
 
 	for (let mutation of mutationsList) {
 
-		if (mutation.type == "childList") {
+		// picking up only additions to the DOM
+		if (mutation.type == "childList" && mutation.addedNodes.length > 0) {
 			console.log("Bot> Searching...");
 			startGuess();
 		};
@@ -26,9 +27,12 @@ let observer = new MutationObserver((mutationsList) => {
 
 // synchronous wrapper to make sure bot doesn't crash anything
 function startGuess() {
+
 	guess().then(complete => {
 		if (!complete) setTimeout(startGuess, 50);
+		else return;
 	});
+
 }
 
 // starts the listener
@@ -77,10 +81,10 @@ function guess() {
 			// if bot is 100% sure, BUZZ
 			if (response.data.num_tossups_found == 1) {
 
-				console.log("Bot> Found answer!");
-
 				// replaces in this order: brackets, quotes, parentheses
 				let answer = response.data.tossups[0].answer.replace(/ *\[[^\]]*]/, "").replace(/"(.*?(\s)*?)*?"/, "").replace(/ *\[[^)]*\ */g, "");
+
+				console.log("Bot> Found answer: " + answer);
 
 				// buzz in
 				$(".buzzbtn").click();
@@ -93,17 +97,14 @@ function guess() {
 
 				resolve(true);
 
-				console.log("--------------------");
-
 			} else {
 				console.log("Bot> Not sure yet...");
 				resolve(false);
 			}
 
-		})
+		});
 
 	});
-	
 }
 
 function stopBot() {
