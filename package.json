@@ -5,6 +5,7 @@
   "dependencies": {},
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-plugin-minify-mangle-names": "^0.4.3",
     "babel-preset-minify": "^0.4.3",
     "cpx": "^1.5.0"
   },
