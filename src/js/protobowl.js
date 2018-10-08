@@ -46,13 +46,13 @@ function guess() {
 		let words = $(".active .well").children().not(".unread");
 
 		// prevents the bot from hitching
-		if (words.length < 3) {
+		//if (words.length < 3) {
 
-			console.log("Bot> Too early to buzz...");
-			resolve(false);
-			return;
+		//	console.log("Bot> Too early to buzz...");
+		//	resolve(false);
+		//	return;
 
-		}
+		//}
 		
 		let question = words.text();
 
