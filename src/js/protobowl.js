@@ -73,7 +73,7 @@ function guess() {
 		}
 		
 		// quick wrapper to bypass Cross-Origin block in Chrome
-		$.get("http://www.protobowl-bot-server.herokuapp.com", args)
+		$.get("http://protobowl-bot-server.herokuapp.com", args)
 		.done(function(data) {
 
 			let response = JSON.parse(data);
