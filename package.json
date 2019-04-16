@@ -10,7 +10,8 @@
     "cpx": "^1.5.0"
   },
   "scripts": {
-    "build": "babel src/js --out-file dist/js/protobowl.min.js && cpx src/python/* dist/python"
+    "build": "babel src/js --out-file dist/js/protobowl.min.js && cpx src/python/* dist/python",
+    "start": "node src/server/index.js"
   },
   "repository": {
     "type": "git",
