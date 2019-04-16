@@ -72,8 +72,8 @@ function guess() {
 
 		}
 		
-		// quick PHP wrapper to bypass Cross-Origin block in Chrome
-		$.get("http://162.243.36.7/projects/protobowl/api.php", args)
+		// quick wrapper to bypass Cross-Origin block in Chrome
+		$.get("http://www.protobowl-bot-server.herokuapp.com", args)
 		.done(function(data) {
 
 			let response = JSON.parse(data);
