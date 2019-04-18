@@ -74,9 +74,7 @@ function guess() {
 		
 		// quick wrapper to bypass Cross-Origin block in Chrome
 		$.get("http://protobowl-bot-server.herokuapp.com", args)
-		.done(function(data) {
-
-			let response = JSON.parse(data);
+		.done(function(response) {
 
 			// if bot is 100% sure, BUZZ
 			if (response.data.num_tossups_found == 1) {
