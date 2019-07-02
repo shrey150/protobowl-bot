@@ -2,6 +2,10 @@ console.log("Bot> Hello");
 console.log("Bot> I'm listening for questions to start now");
 console.log("Bot> If you want me to stop, type in 'stopBot()'");
 
+console.log("Bot> Pinging server (buzzing may be delayed until it starts up)...");
+
+$.get("https://protobowl-bot-server.herokuapp.com").done(() => console.log("Bot> Server online!"));
+
 const node = document.getElementById("history");
 
 const config = {
@@ -73,8 +77,8 @@ function guess() {
 		}
 		
 		// quick wrapper to bypass Cross-Origin block in Chrome
-		$.get("http://protobowl-bot-server.herokuapp.com", args)
-		.done(function(response) {
+		$.get("https://protobowl-bot-server.herokuapp.com", args)
+		.done(response => {
 
 			// if bot is 100% sure, BUZZ
 			if (response.data.num_tossups_found == 1) {
@@ -91,7 +95,7 @@ function guess() {
 
 				// press "next" with a small delay so it'll work
 				let e = $.Event("keydown", {keyCode: 78, which: 78});
-				setTimeout(() => { $("body").trigger(e) }, 50);
+				setTimeout(() => $("body").trigger(e), 50);
 
 				resolve(true);
 

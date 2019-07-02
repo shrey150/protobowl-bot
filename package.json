@@ -4,14 +4,13 @@
   "description": "a bot for Protobowl",
   "dependencies": {},
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-plugin-minify-mangle-names": "^0.4.3",
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
     "babel-preset-minify": "^0.4.3",
     "cpx": "^1.5.0"
   },
   "scripts": {
-    "build": "babel src/js --out-file dist/js/protobowl.min.js && cpx src/python/* dist/python",
-    "start": "node src/server/index.js"
+    "build": "npx babel src/js --out-file dist/js/protobowl.min.js && cpx src/python/* dist/python"
   },
   "repository": {
     "type": "git",

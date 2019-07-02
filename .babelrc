@@ -1,4 +1,3 @@
 {
-  "presets": ["minify"],
-  "plugins": ["minify-mangle-names"]
+  "presets": ["minify"]
 }
